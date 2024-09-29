@@ -1,0 +1,16 @@
+.link {
+  font-weight: bold;
+}
+
+.activeLink {
+  color: fuchsia;
+  font-weight: bold;
+}
+.wrapper {
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+  gap: 20px;
+  font-weight: 700;
+  background-color: rgba(253, 193, 241, 0.458);
+}

@@ -1,0 +1,64 @@
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: "Arvo", serif;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.link_404 {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: fuchsia;
+  margin: 20px 0;
+  display: inline-block;
+  border-radius: 20px;
+  width: 60px;
+}
+
+.contant_box_404 {
+  margin-top: -50px;
+}
+
+/* Додаткові класи для адаптації Bootstrap */
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col_sm_12 {
+  width: 100%;
+}
+
+.col_sm_10 {
+  width: 83.33333333%;
+}
+
+.col_sm_offset_1 {
+  margin-left: 8.33333333%;
+}
+
+.text_center {
+  text-align: center;
+}
