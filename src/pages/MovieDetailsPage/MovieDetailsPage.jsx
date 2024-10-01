@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { fetchMovieById } from "../../api";
 import { Link } from "react-router-dom";
 import s from "./MovieDetailsPage.module.css";
@@ -15,6 +15,11 @@ const MovieDetailsPage = () => {
     return clsx(s.link, isActive && s.active);
   };
 
+  //location.state?.from — шлях, звідки прийшов користувач
+  //Якщо location.state?.from існує, він зберігається в goBack.current, інакше зберігається шлях до сторінки /movies
+  const location = useLocation();
+  const goBack = useRef(location.state?.from || "/movies");
+
   useEffect(() => {
     const getMovieById = async () => {
       const data = await fetchMovieById(movieId);
@@ -27,7 +32,7 @@ const MovieDetailsPage = () => {
 
   return (
     <div style={{ marginTop: "10px" }}>
-      <Link to="/" className={s.goBack}>
+      <Link to={goBack.current} className={s.goBack}>
         <Icon icon="ion:return-up-back-outline" /> Go back
       </Link>
       <div className={s.wrapper}>

@@ -1,0 +1,14 @@
+.input {
+  width: 200px;
+  border-radius: 20px;
+  padding-left: 10px;
+  border: 1px fuchsia solid;
+}
+
+.btn {
+  color: fuchsia;
+  background-color: transparent;
+  border: 1px black solid;
+  border-radius: 30px;
+  height: 25px;
+}

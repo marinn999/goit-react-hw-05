@@ -15,7 +15,7 @@ const MovieReviews = () => {
     getReviews();
   }, [movieId]);
 
-  if (!reviews) return <h2>There is no review yet...</h2>;
+  if (reviews.length === 0) return <p>There is no review yet...</p>;
 
   return (
     <ul className={s.list}>
