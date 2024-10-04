@@ -16,8 +16,11 @@ const MovieDetailsPage = () => {
   };
 
   //location.state?.from — шлях, звідки прийшов користувач
-  //Якщо location.state?.from існує, він зберігається в goBack.current, інакше зберігається шлях до сторінки /movies
+  //Якщо location.state?.from існує(якщо я переходжу зі сторінки з фільмами, а не просто копіюю
+  //і вставляю посилання на конкретний фільм - в такому випадку не буде попередньої сторінки з
+  //пошуком ), він зберігається в goBack.current, інакше зберігається шлях до сторінки / movies
   const location = useLocation();
+  console.log(location);
   const goBack = useRef(location.state?.from || "/movies");
 
   useEffect(() => {

@@ -11,6 +11,11 @@ const MoviesPage = () => {
   const query = searchParams.get("query") ?? "";
 
   const handleChangeQuery = (newQuery) => {
+    //Щоб при пошуку, коли пусте поле, не було в url “movies/query=“, то повертаємо пустий обʼєкт і буде просто “/movies”
+    if (!newQuery) {
+      return setSearchParams({});
+    }
+
     searchParams.set("query", newQuery);
     //searchParams записує дані в себе, а setSearchParams в url.
     setSearchParams(searchParams);
