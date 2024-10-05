@@ -1,17 +1,14 @@
 .wrapper {
   background-color: #d240e80f;
 }
-.headerName {
-  margin: 20px;
-  font-style: italic;
-  text-decoration: underline;
-}
+
 .list {
   margin-left: 20px;
 }
 .listItem {
   margin-bottom: 10px;
   list-style-type: disc;
+  font-size: large;
 }
 .listItem:hover,
 .listItem:focus {

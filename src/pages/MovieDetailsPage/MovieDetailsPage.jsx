@@ -1,15 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { fetchMovieById } from "../../api";
 import { Link } from "react-router-dom";
 import s from "./MovieDetailsPage.module.css";
 import { Icon } from "@iconify/react";
 import clsx from "clsx";
+import Loader from "../../components/Loader/Loader";
+import toast from "react-hot-toast";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-
   const [movie, setMovie] = useState(null);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const buildLinkClass = ({ isActive }) => {
     return clsx(s.link, isActive && s.active);
@@ -20,18 +23,27 @@ const MovieDetailsPage = () => {
   //і вставляю посилання на конкретний фільм - в такому випадку не буде попередньої сторінки з
   //пошуком ), він зберігається в goBack.current, інакше зберігається шлях до сторінки / movies
   const location = useLocation();
-  console.log(location);
   const goBack = useRef(location.state?.from || "/movies");
 
   useEffect(() => {
     const getMovieById = async () => {
-      const data = await fetchMovieById(movieId);
-      setMovie(data);
+      try {
+        setLoading(true);
+        setError(false);
+        const data = await fetchMovieById(movieId);
+        setMovie(data);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     };
     getMovieById();
   }, [movieId]);
 
-  if (!movie) return <h2>Loading...</h2>;
+  if (loading) return <Loader />;
+  if (error) return toast.error("Something went wrong");
+  if (!movie) return <h2>No movie found...</h2>;
 
   return (
     <div style={{ marginTop: "10px" }}>
@@ -42,6 +54,7 @@ const MovieDetailsPage = () => {
         <img
           className={s.img}
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          loading="lazy"
           alt={movie.title}
         />
         <div className={s.textWrapper}>
@@ -65,7 +78,9 @@ const MovieDetailsPage = () => {
           Reviews <Icon icon="solar:forward-bold" />
         </NavLink>
       </div>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
