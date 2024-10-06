@@ -1,11 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-// import HomePage from "./pages/HomePage/HomePage";
-// import Navigation from "./components/Navigation/Navigation";
-// import MoviesPage from "./pages/MoviesPage/MoviesPage";
-// import MovieDetailsPage from "./pages/MovieDetailsPage/MovieDetailsPage";
-// import MovieCast from "./components/MovieCast/MovieCast";
-// import MovieReviews from "./components/MovieReviews/MovieReviews";
-// import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { Toaster } from "react-hot-toast";
 import { lazy, Suspense } from "react";
 import Loader from "./components/Loader/Loader";
