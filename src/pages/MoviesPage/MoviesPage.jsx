@@ -5,6 +5,7 @@ import { fetchMovieBySearch } from "../../api";
 import s from "./MoviesPage.module.css";
 import { toast } from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
+import MovieList from "../../components/MovieList/MovieList";
 
 const MoviesPage = () => {
   const [findedMovies, setFindedMovies] = useState([]);
@@ -48,20 +49,13 @@ const MoviesPage = () => {
     <div>
       <SearchBar handleChangeQuery={handleChangeQuery} />
       {loading && <Loader />}
+      {/* Використовую MovieList для рендеру знайдених фільмів */}
       {findedMovies.length > 0 && (
-        <ul className={s.list}>
-          {findedMovies.map((movie) => (
-            <li key={movie.id} className={s.listItem}>
-              {/* Передаємо попередній стан (пошуковий запит) state= */}
-              <Link
-                to={`/movies/${movie.id}`}
-                state={{ from: `/movies?query=${query}` }}
-              >
-                {movie.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <MovieList
+          movies={findedMovies}
+          linkState={{ from: `/movies?query=${query}` }} // Передаю стан пошукового запиту:
+          //linkState містить стан пошукового запиту для навігації назад після переходу на сторінку деталей фільму.
+        />
       )}
     </div>
   );
